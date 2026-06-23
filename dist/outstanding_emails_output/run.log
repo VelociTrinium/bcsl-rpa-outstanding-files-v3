@@ -1,0 +1,37 @@
+15:32:19  INFO    Run jobs = both  |  transport = dry_run
+15:32:19  INFO    ============================================================
+15:32:19  INFO    CLIENT job  |  threshold 30 days  |  transport dry_run
+15:32:19  INFO    Clients with pending bills: 23  |  address book: 6
+15:32:19  INFO    DRAFT ABC CLEANTECH PRIVATE LIMITED (MUMBAI)         client overdue count=5 upto=5  client pending count=3,550,384.00
+15:32:19  WARNING SKIP  ABC CT RE PARK (01) PRIVATE LIMITED            no-address (closest: 'ABC CLEANTECH PRIVATE LIMITED (MUMBAI)')
+15:32:19  INFO    DRAFT Abhyudaya Co-Op Bank Ltd                       client overdue count=15 upto=8  client pending count=170,581.00
+15:32:19  INFO    DRAFT Aditya Birla Real Estate Limited (Century)     client overdue count=0 upto=2  client pending count=4,956.00
+15:32:19  INFO    DRAFT AGRIBOARD INDUSTRIES LLP.                      client overdue count=2 upto=0  client pending count=30,585.00
+15:32:19  WARNING SKIP  A H WADIA TRUST                                no-address
+15:32:19  WARNING SKIP  Allcargo Logistics Ltd                         no-address (closest: 'Ameya Logistics Pvt. Ltd.')
+15:32:20  INFO    DRAFT ALOK RAO                                       client overdue count=0 upto=1  client pending count=3,776.00
+15:32:20  WARNING SKIP  ALX SHIPPING AGENCIES INDIA PRIVATE LIMITED    no-address
+15:32:20  INFO    DRAFT Ameya Logistics Pvt. Ltd.                      client overdue count=0 upto=2  client pending count=78,765.00
+15:32:20  WARNING SKIP  Apogeon Technologies Private Limited           no-address (closest: 'ABC CLEANTECH PRIVATE LIMITED (MUMBAI)')
+15:32:20  WARNING SKIP  ARJAV CAPITAL SOLUTIONS PRIVATE LIMITED        no-address
+15:32:20  WARNING SKIP  ASAN BUILDING SYSTEM LLP (NEW)                 no-address
+15:32:20  WARNING SKIP  Ayushakti Ayurved Pvt. Ltd.                    no-address
+15:32:20  WARNING SKIP  BARE ASSOCIATES INDIA PVT LTD                  no-address
+15:32:20  WARNING SKIP  BOARD OF RADIATION & ISOTOPE TECHNOLOGY (BRIT  no-address
+15:32:20  WARNING SKIP  BROOKFIELD RENEWABLE (OPERATING) INDIA PRIVAT  no-address
+15:32:20  WARNING SKIP  CANOFY TECHNOLOGIES PRIVATE LIMITED            no-address (closest: 'ABC CLEANTECH PRIVATE LIMITED (MUMBAI)')
+15:32:20  WARNING SKIP  CAPTECH TECHNOLOGIES PRIVATE LIMITED           no-address
+15:32:20  WARNING SKIP  CELCIUS LOGISTICS SOLUTIONS PRIVATE LIMITED    no-address
+15:32:20  WARNING SKIP  CENERGY OFFSHORE PRIVATE LIMITED               no-address
+15:32:20  WARNING SKIP  CENTER FOR SEMICONDUCTOR TECHNOLOGIES, (SEMIX  no-address
+15:32:20  WARNING SKIP  Century Textiles &  Industries Ltd,            no-address
+15:32:20  INFO    ============================================================
+15:32:20  INFO    SALES job  |  bills above 35 days  |  transport dry_run
+15:32:20  INFO    Sales people with >35-day bills: 2  |  address book: 3
+15:32:20  INFO    DRAFT Atif Banatwala             bills=23  pend=3,321,609.74
+15:32:20  WARNING SKIP  (No Sale Person)  13 aged bills with no sales person (total 105,520.80) - need manual handling
+15:32:20  INFO    DRAFT Virendra Singh             bills=3  pend=431,450.00
+15:32:20  INFO    ============================================================
+15:32:20  INFO    client  : 6 previewed, 17 skipped, 0 errors
+15:32:20  INFO    sales   : 2 previewed, 1 skipped, 0 errors
+15:32:20  INFO    Previews under 'outstanding_emails_output/<job>/'. Review them, then re-run with --transport smtp (or outlook).
