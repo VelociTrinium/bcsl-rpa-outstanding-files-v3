@@ -1,3 +1,5 @@
+(i have intentionally kept the env file in the commit.)
+
 # BCSL Outstanding-Email Generator (RPA Tool)
 
 This tool reads a Tally **"Sundry Debtors / Pending Bills"** export spreadsheet (`Client_OS_Report.xlsx`) and automates email dispatch:
