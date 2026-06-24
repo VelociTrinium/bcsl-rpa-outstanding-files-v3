@@ -327,7 +327,7 @@ def parse_report(path):
             continue
 
         if isinstance(A, datetime.datetime):                      # invoice row
-            pending = F if F is not None else E
+            pending = E if E is not None else D
             if pending is None:
                 continue
             try:
@@ -337,13 +337,13 @@ def parse_report(path):
             if abs(pending) < 0.005:
                 continue
             try:
-                opening = float(E) if E is not None else pending
+                opening = float(D) if D is not None else pending
             except (TypeError, ValueError):
                 opening = pending
 
-            due = G if isinstance(G, datetime.datetime) else None
+            due = F if isinstance(F, datetime.datetime) else None
             try:
-                overdue = int(float(H)) if H not in (None, "") else None
+                overdue = int(float(G)) if G not in (None, "") else None
             except (TypeError, ValueError):
                 overdue = None
             if overdue is None and due is not None:
@@ -354,7 +354,7 @@ def parse_report(path):
                 continue
             clients[current].append(dict(
                 party=current, date=A, ref=clean_text(B),
-                particulars=clean_text(C), sale=clean_text(D),
+                particulars=clean_text(C), sale="",
                 opening=opening, pending=pending, due=due,
                 overdue=overdue if overdue is not None else 0,
             ))
@@ -468,26 +468,32 @@ def build_signature_html(signer):
 # ---------------------------------------------------------------------
 #  CLIENT e-mail body (two ageing sections, grouped under the client name)
 # ---------------------------------------------------------------------
-_CLIENT_COLS = [("date", "right", 70), ("ref", "left", 150),
-                ("particulars", "left", 235), ("sale", "left", 110),
-                ("opening", "right", 100), ("pending", "right", 100)]
+_CLIENT_COLS = [("date", "Date", "right", 70), ("ref", "Ref. No.", "left", 150),
+                ("particulars", "Particulars", "left", 345),
+                ("opening", "Opening", "right", 100), ("pending", "Pending", "right", 100)]
 
 
 def _client_table(client_name, invoices):
     rows = []
     hdr = []
-    for i, (key, align, w) in enumerate(_CLIENT_COLS):
+    for i, (key, title, align, w) in enumerate(_CLIENT_COLS):
         if i == 2:
             hdr.append(_td(html.escape(client_name), align, w, bg="#D9D9D9", bold=True))
         else:
             hdr.append(_td("", align, w, bg="#D9D9D9"))
     rows.append("<tr>" + "".join(hdr) + "</tr>")
 
+    # Column headings row
+    cols_hdr = []
+    for key, title, align, w in _CLIENT_COLS:
+        cols_hdr.append(_td(html.escape(title), align, w, bg="#D9D9D9", bold=True))
+    rows.append("<tr>" + "".join(cols_hdr) + "</tr>")
+
     to = tp = 0.0
     for inv in invoices:
         to += inv["opening"]; tp += inv["pending"]
         cells = []
-        for key, align, w in _CLIENT_COLS:
+        for key, title, align, w in _CLIENT_COLS:
             if key == "date":
                 v = inv["date"].strftime("%d-%b-%y")
             elif key == "opening":
@@ -500,7 +506,7 @@ def _client_table(client_name, invoices):
         rows.append("<tr>" + "".join(cells) + "</tr>")
 
     tcells = []
-    for key, align, w in _CLIENT_COLS:
+    for key, title, align, w in _CLIENT_COLS:
         if key == "opening":
             tcells.append(_td(fmt_amount(to), align, w, bold=True))
         elif key == "pending":
@@ -584,9 +590,9 @@ def build_client_plain(client_name, over, under):
         to = tp = 0.0
         for inv in invs:
             to += inv["opening"]; tp += inv["pending"]
-            out.append("  {}  {}  {}  {}  {}  {}".format(
+            out.append("  {}  {}  {}  {}  {}".format(
                 inv["date"].strftime("%d-%b-%y"), inv["ref"],
-                clean_text(inv["particulars"]).split("\n")[0], inv["sale"],
+                clean_text(inv["particulars"]).split("\n")[0],
                 fmt_amount(inv["opening"]), fmt_amount(inv["pending"])))
         out.append("  TOTAL: {}  {}".format(fmt_amount(to), fmt_amount(tp)))
         out.append("")
