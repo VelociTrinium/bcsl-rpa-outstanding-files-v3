@@ -1,4 +1,4 @@
-(i have intentionally kept the env file in the commit.)
+(i have intentionally kept the .env file in the commit.)
 
 # BCSL Outstanding-Email Generator (RPA Tool)
 
